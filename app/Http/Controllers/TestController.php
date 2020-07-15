@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 class TestController extends Controller
 {
+    public function test(){
+        $url="http://www.api.com/api/info";
+        $response=file_get_contents($url);
+        var_dump($response);
+    }
+
     public function token(){
         $appid="wx8ca8cb8ce820d272";
         $secret="97698e5e537e0dabf5e331a0d523d6d2";

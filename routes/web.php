@@ -17,3 +17,6 @@ Route::get('/', function () {
 Route::get("/token","TestController@token");
 Route::get("/token2","TestController@token2");
 Route::get("/token3","TestController@token3");
+
+Route::get("/api/test","TestController@test");
+
