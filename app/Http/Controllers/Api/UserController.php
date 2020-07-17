@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\User;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Str;
+use App\Model\Token;
 
 class UserController extends Controller
 {
@@ -46,7 +48,11 @@ class UserController extends Controller
         $data["pwd"]=password_hash($data["pwd"],PASSWORD_DEFAULT);
         $res=User::create($data);
         if($res){
-            return redirect("api/login");
+            $response=[
+                "error"=>"0",
+                "msg"=>"注册成功"
+            ];
+            return $response;
         }
     }
     //登陆
@@ -57,18 +63,60 @@ class UserController extends Controller
         $name=request()->input("name");
         $pwd=request()->input("pwd");
         $user=User::where(["name"=>$name])->first();
-        $res=password_verify($pwd,$user->pwd);
-        if($res){
-            $token=time();
-            $token=sha1($token);
-            Redis::set("name",$token);
-            echo $token;die;
-            return redirect("api/conter");
+        if($user){
+            $pwd=password_verify($pwd,$user->pwd);
+            if($pwd){
+                //生成token
+                $token=Str::random(32);
+                $token=sha1($token);
+                $data=[
+                    "token"=>$token,
+                    "uid"=>$user->user_id
+                ];
+                Token::create($data);
+                $response=[
+                    "error"=>"0",
+                    "msg"=>"登陆成功",
+                    "data"=>[
+                        "token"=>$token,
+                        "uid"=>$user->user_id
+                    ]
+                ];
+            }else{
+                $response=[
+                    "error"=>"40005",
+                    "msg"=>"密码错误"
+                ];
+            }
         }else{
-            return redirect("api/login");
+            $response=[
+                "error"=>"40006",
+                "msg"=>"登陆失败,没有此账号"
+            ];
         }
+        return $response;
     }
-    public function conter(){
-        echo "用户中心";
+    public function conter(Request $request){
+        $token=$request->get('token');
+        if(empty($token)){
+            $response=[
+                "error"=>"40007",
+                "msg"=>"请输入token"
+            ];
+            return $response;
+        }
+        $data=Token::where(["token"=>$token])->first();
+        if(!$data){
+            $response=[
+                "error"=>"40008",
+                "msg"=>"请输入正确得token"
+            ];
+        }else{
+            $response=[
+                "error"=>"0",
+                "msg"=>"欢迎来到个人中心"
+            ];
+        }
+        return $response;
     }
 }
