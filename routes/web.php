@@ -14,9 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/token","TestController@token");
-Route::get("/token2","TestController@token2");
-Route::get("/token3","TestController@token3");
+Route::get("/token","TestController@token");//获取微信access_token    file_get_conetens
+Route::get("/token2","TestController@token2");//获取微信access_token   curl
+Route::get("/token3","TestController@token3");//获取微信access_token   第三方类库
 
-Route::get("/api/test","TestController@test");
+Route::get("/api/test","TestController@test");//联通两个框架
+
+//注册
+Route::get("/api/reg","Api\UserController@reg");
+Route::post("/api/reg_do","Api\UserController@reg_do");
+//登陆
+Route::get("/api/login","Api\UserController@login");
+Route::post("/api/login_do","Api\UserController@login_do");
+//用户中心
+Route::get("/api/conter","Api\UserController@conter");
 
