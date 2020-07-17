@@ -40,12 +40,9 @@ class TestController extends Controller
         $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
         //实例化客户端
         $client = new Client();
-        //get请求
-        $res = $client->request('GET', $url);
         //返回状态码
         // echo $res->getStatusCode();
-
-        $res = $client->request('GET', $url)->getBody()->getContents();
+        $res = $client->request('GET', $url)->getBody();
         echo $res;
     }
 }
