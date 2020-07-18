@@ -29,3 +29,6 @@ Route::post("/api/login_do","Api\UserController@login_do");
 //用户中心
 Route::get("/api/conter","Api\UserController@conter");
 
+//redis     练习
+Route::get("/api/hash","TestController@hash");//存入redis
+Route::get("/api/hash2","TestController@hash2");//获取redis值

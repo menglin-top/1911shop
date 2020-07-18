@@ -105,10 +105,25 @@ class UserController extends Controller
             ];
             return $response;
         }
+        //接口调用次数
+        $key_cont="cont";
+        $cont=Redis::incr($key_cont);
+        if($cont>10){
+            $response=[
+                "error"=>"40008",
+                "msg"=>"接口调用超过10次,请重新获取token"
+            ];
+            return $response;
+            Redis::expire($cont,5);
+        }else {
+            $cont2=Redis::incr($key_cont);
+            Redis::expire($cont2,10);
+        }
+
         $data=Token::where(["token"=>$token])->first();
         if(!$data){
             $response=[
-                "error"=>"40008",
+                "error"=>"40009",
                 "msg"=>"请输入正确得token"
             ];
         }else{

@@ -5,14 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redis;
+
 class TestController extends Controller
 {
+    public function hash(){
+        $data=[
+            'name'=>"Joke",
+            'email'=>'1501113246@qq.com',
+            'like'=>'music'
+        ];
+        $key="tom";
+        Redis::hmset($key,$data);
+    }
+    public function hash2(){
+        $key="tom";
+        $res=Redis::hgetall($key);
+        return $res;
+    }
+    //联通两个项目
     public function test(){
         $url="http://www.api.com/api/info";
         $response=file_get_contents($url);
         var_dump($response);
     }
-
+    //获取access_token
     public function token(){
         $appid="wx8ca8cb8ce820d272";
         $secret="97698e5e537e0dabf5e331a0d523d6d2";
