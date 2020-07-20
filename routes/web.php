@@ -32,3 +32,6 @@ Route::get("/api/conter","Api\UserController@conter");
 //redis     练习
 Route::get("/api/hash","TestController@hash");//存入redis
 Route::get("/api/hash2","TestController@hash2");//获取redis值
+
+//商品信息
+Route::get("/goods/info","Api\GoodsController@info");

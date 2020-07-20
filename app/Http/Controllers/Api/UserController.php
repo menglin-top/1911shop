@@ -97,6 +97,9 @@ class UserController extends Controller
         return $response;
     }
     public function conter(Request $request){
+        $key="black";//黑名单
+        $keys="sign_in";//签到
+        Redis::zincrby($keys,time(),"lisi");
         $token=$request->get('token');
         if(empty($token)){
             $response=[
@@ -113,11 +116,12 @@ class UserController extends Controller
                 "error"=>"40008",
                 "msg"=>"接口调用超过10次,请重新获取token"
             ];
+//            Redis::expire($key_cont,5);
+              Redis::sadd($key,$token);
             return $response;
-            Redis::expire($cont,5);
         }else {
-            $cont2=Redis::incr($key_cont);
-            Redis::expire($cont2,10);
+//            $cont2=Redis::incr($key_cont);
+            Redis::expire($key_cont,10);
         }
 
         $data=Token::where(["token"=>$token])->first();
@@ -129,6 +133,7 @@ class UserController extends Controller
         }else{
             $response=[
                 "error"=>"0",
+                "id"=>$data->uid,
                 "msg"=>"欢迎来到个人中心"
             ];
         }
