@@ -27,7 +27,7 @@ Route::post("/api/reg_do","Api\UserController@reg_do");
 Route::get("/api/login","Api\UserController@login");
 Route::post("/api/login_do","Api\UserController@login_do");
 //用户中心
-Route::get("/api/conter","Api\UserController@conter");
+Route::get("/api/conter","Api\UserController@conter")->middleware("vertoken");
 
 //redis     练习
 Route::get("/api/hash","TestController@hash");//存入redis

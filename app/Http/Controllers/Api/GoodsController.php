@@ -23,5 +23,6 @@ class GoodsController extends Controller
             $info=Redis::hgetall($key);
             print_r($info);
         }
+        Redis::hincrby($key,"view_incr",1);
     }
 }
