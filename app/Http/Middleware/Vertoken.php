@@ -36,13 +36,10 @@ class Vertoken
         if($cont>100){
             $response=[
                 "error"=>"40008",
-                "msg"=>"接口调用超过10次,请重新获取token"
+                "msg"=>"接口调用超过100次,请重新获取token"
             ];
             Redis::sadd($key,$token);
             return response()->json($response);
-        }else{
-//            $cont2=Redis::incr($key_cont);
-            Redis::expire($key_cont,10);
         }
 
 //        token必须输入正确
@@ -54,6 +51,7 @@ class Vertoken
             ];
             return response()->json($response);
         }
+        $request->attributes->add(["uid"=>$data->uid]);
         return $next($request);
     }
 }

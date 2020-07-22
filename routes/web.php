@@ -27,11 +27,11 @@ Route::post("/api/reg_do","Api\UserController@reg_do");
 Route::get("/api/login","Api\UserController@login");
 Route::post("/api/login_do","Api\UserController@login_do");
 //用户中心
-Route::get("/api/conter","Api\UserController@conter")->middleware("vertoken");
+Route::get("/api/conter","Api\UserController@conter")->middleware("vertoken","incr");
 
 //redis     练习
 Route::get("/api/hash","TestController@hash");//存入redis
 Route::get("/api/hash2","TestController@hash2");//获取redis值
 
 //商品信息
-Route::get("/goods/info","Api\GoodsController@info");
+Route::get("/goods/info","Api\GoodsController@info")->middleware("vertoken","incr");

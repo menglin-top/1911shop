@@ -74,6 +74,11 @@ class UserController extends Controller
                     "uid"=>$user->user_id
                 ];
                 Token::create($data);
+
+                //调用登陆接口次数
+                $data=$_SERVER['REQUEST_URI'];
+                $keys="h:view_count:".$user->user_id;
+                Redis::hincrby($keys,$data,1);
                 $response=[
                     "error"=>"0",
                     "msg"=>"登陆成功",
@@ -97,11 +102,8 @@ class UserController extends Controller
         return $response;
     }
     public function conter(Request $request){
-        $keys="sign_in";//签到
-        Redis::zincrby($keys,time(),"zhangsan");
-
-        //调用接口次数
-        $key="conter";
+//        $keys="sign_in";//签到
+//        Redis::zincrby($keys,time(),"zhangsan");
 //        Redis::incr($key);
 
         //个人中心
@@ -110,7 +112,6 @@ class UserController extends Controller
         $response=[
             "error"=>"0",
             "id"=>$data->uid,
-            "count"=>Redis::hincrby($key,"api_cont",1),
             "msg"=>"欢迎来到个人中心"
         ];
 
