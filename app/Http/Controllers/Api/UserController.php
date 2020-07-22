@@ -100,14 +100,20 @@ class UserController extends Controller
         $keys="sign_in";//签到
         Redis::zincrby($keys,time(),"zhangsan");
 
+        //调用接口次数
+        $key="conter";
+//        Redis::incr($key);
+
         //个人中心
         $token=$request->get('token');
         $data=Token::where(["token"=>$token])->first();
         $response=[
             "error"=>"0",
             "id"=>$data->uid,
+            "count"=>Redis::hincrby($key,"api_cont",1),
             "msg"=>"欢迎来到个人中心"
         ];
+
         return $response;
     }
 }
