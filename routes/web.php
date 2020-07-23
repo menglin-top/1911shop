@@ -35,3 +35,6 @@ Route::get("/api/hash2","TestController@hash2");//获取redis值
 
 //商品信息
 Route::get("/goods/info","Api\GoodsController@info")->middleware("vertoken","incr");
+
+//加密算法
+Route::get("/api/encrypt","Api\OpensslController@encrypt");//对称加密
