@@ -48,7 +48,7 @@ class OpensslController extends Controller
         $pub_key_count=file_get_contents(storage_path("keys/www.pub.key"));//获取公钥内容
         $pub_key=openssl_get_publickey($pub_key_count);//获取公钥
         openssl_public_encrypt($data,$enc_data,$pub_key);//公钥加密
-        echo "公钥加密后:".$enc_data;echo "<hr>";
+        //echo "公钥加密后:".$enc_data;echo "<hr>";
 
         $url="http://www.api.com/api/un_decrypt";
 
@@ -62,7 +62,7 @@ class OpensslController extends Controller
 
         // 3 开启会话（发送请求）
         $response = curl_exec($ch);
-        echo $response;
+        //echo $response;
         // 4 检测错误
         $errno = curl_errno($ch);       //错误码
         $errmsg = curl_error($ch);
@@ -77,7 +77,7 @@ class OpensslController extends Controller
 
         $pri_key_count=file_get_contents(storage_path("keys/api.priv.key"));//获取私钥内容
         $pri_key=openssl_get_privatekey($pri_key_count);//获取私钥
-        openssl_private_decrypt($res,$dec_data2,$pri_key);//私钥解密
+        openssl_private_decrypt($response,$dec_data2,$pri_key);//私钥解密
         echo $dec_data2;echo "<hr>";
     }
     //签名
@@ -86,6 +86,17 @@ class OpensslController extends Controller
         $data="hualihushao";
         $sign=md5($key.$data);
         $url='http://www.api.com/api/sign?data='.$data . '&sign='.$sign;
+        $res=file_get_contents($url);
+        echo $res;
+    }
+    //公钥生成签名
+    public function open_sign(){
+        $data="莫名其妙";
+        $pri_key_count=file_get_contents(storage_path("keys/api.priv.key"));
+        $pri_key=openssl_get_privatekey($pri_key_count);
+        openssl_sign($data,$signtrue,$pri_key,OPENSSL_ALGO_SHA1);
+        $signtrue=base64_encode($signtrue);
+        $url="http://www.api.com/api/open_sign?signtrue=".urlencode($signtrue)."&data=".urlencode($data);
         $res=file_get_contents($url);
         echo $res;
     }
