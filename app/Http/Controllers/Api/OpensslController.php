@@ -80,4 +80,13 @@ class OpensslController extends Controller
         openssl_private_decrypt($res,$dec_data2,$pri_key);//私钥解密
         echo $dec_data2;echo "<hr>";
     }
+    //签名
+    public function sign(){
+        $key="1911api";
+        $data="hualihushao";
+        $sign=md5($key.$data);
+        $url='http://www.api.com/api/sign?data='.$data . '&sign='.$sign;
+        $res=file_get_contents($url);
+        echo $res;
+    }
 }
