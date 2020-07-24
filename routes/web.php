@@ -38,4 +38,5 @@ Route::get("/goods/info","Api\GoodsController@info")->middleware("vertoken","inc
 
 //加密算法
 Route::get("/api/encrypt","Api\OpensslController@encrypt");//对称加密
-Route::get("/api/un_encrypt","Api\OpensslController@un_encrypt");//非对称加密
+Route::any("/api/un_encrypt","Api\OpensslController@un_encrypt");//非对称加密
+Route::get("/api/sign","Api\OpensslController@sign");//签名

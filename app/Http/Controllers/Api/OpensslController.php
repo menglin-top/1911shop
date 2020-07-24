@@ -45,7 +45,7 @@ class OpensslController extends Controller
     //非对称加密
     public function un_encrypt(){
         $data="不愧是我";
-        $pub_key_count=file_get_contents(storage_path("keys/pub.key"));//获取公钥内容
+        $pub_key_count=file_get_contents(storage_path("keys/www.pub.key"));//获取公钥内容
         $pub_key=openssl_get_publickey($pub_key_count);//获取公钥
         openssl_public_encrypt($data,$enc_data,$pub_key);//公钥加密
         echo "公钥加密后:".$enc_data;echo "<hr>";
@@ -72,7 +72,12 @@ class OpensslController extends Controller
             var_dump($errmsg);
             die;
         }
-        curl_close($ch);
+        $res=curl_close($ch);
         echo "<hr>";
+
+        $pri_key_count=file_get_contents(storage_path("keys/api.priv.key"));//获取私钥内容
+        $pri_key=openssl_get_privatekey($pri_key_count);//获取私钥
+        openssl_private_decrypt($res,$dec_data2,$pri_key);//私钥解密
+        echo $dec_data2;echo "<hr>";
     }
 }
