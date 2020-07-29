@@ -371,7 +371,7 @@
         </div>
         <div class="login">
             <div class="row">
-                <form class="col s12" action="http://www.api.com/index/login" method="post">
+                <form class="col s12" action="{{url("admin/do_login")}}" method="post">
                     <div class="input-field">
                         <input type="text" class="validate" name="username" placeholder="USERNAME" required>
                     </div>

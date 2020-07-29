@@ -12,9 +12,25 @@ class indexController extends Controller
     public function login(){
         return view("admin/index/login");
     }
+    public function do_login(){
+        $username=request()->post("username");
+        $email=request()->post("email");
+        $pwd=request()->post("pwd");
+        $url="http://www.api.com/index/login?username=".$username."&email=".$email."&pwd=".$pwd;
+        $res=file_get_contents($url);
+        echo $res;
+    }
     //注册
     public function reg(){
         return view("admin/index/reg");
+    }
+    public function do_reg(){
+        $username=request()->post("username");
+        $email=request()->post("email");
+        $pwd=request()->post("pwd");
+        $url="http://www.api.com/index/reg?username=".$username."&email=".$email."&pwd=".$pwd;
+        $res=file_get_contents($url);
+        echo $res;
     }
     //用户中心
     public function user(){

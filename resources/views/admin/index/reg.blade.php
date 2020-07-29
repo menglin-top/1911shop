@@ -371,7 +371,7 @@
         </div>
         <div class="register">
             <div class="row">
-                <form class="col s12" action="http://www.api.com/index/reg" method="post">
+                <form class="col s12" action="{{url("admin/do_reg")}}" method="post">
                     <div class="input-field">
                         <input type="text" class="validate" name="username" placeholder="NAME" required>
                     </div>
