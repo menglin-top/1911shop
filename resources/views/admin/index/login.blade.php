@@ -10,7 +10,7 @@
     <meta name="HandheldFriendly" content="True">
 
     <link rel="stylesheet" href="/style/css/materialize.css">
-    <link rel="stylesheet" href="font-awesome/style/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/style/css/normalize.css">
     <link rel="stylesheet" href="/style/css/owl.carousel.css">
     <link rel="stylesheet" href="/style/css/owl.theme.css">
