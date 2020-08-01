@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function auth(){
+        $code=$_GET["code"];
+        $this->auth2($code);
         print_r($_GET);
     }
     public function auth2($code){
@@ -14,5 +16,27 @@ class AuthController extends Controller
         $client_secret="5ea5245a8318c7f460a401afc8eaeb001c61b487";
         $url="https://github.com/login/oauth/access_token?client_id=".$client_id."&client_secret=".$client_secret."&code=".$code;
 
+        // 1 实例化
+        $ch = curl_init();
+        // 2 配置参数
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_POST,1);        // 使用post 方式
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);   // 通过变量接收响应
+
+        // 3 开启会话（发送请求）
+        $response = curl_exec($ch);
+        //echo $response;
+        // 4 检测错误
+        $errno = curl_errno($ch);       //错误码
+        $errmsg = curl_error($ch);
+        if($errno)
+        {
+            echo '错误码： '.$errno;echo '</br>';
+            var_dump($errmsg);
+            die;
+        }
+        $res=curl_close($ch);
+        echo "<hr>";
+        print_r($res);
     }
 }
