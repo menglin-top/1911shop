@@ -9,18 +9,23 @@ class AuthController extends Controller
     public function auth(){
         $code=$_GET["code"];
         $this->auth2($code);
-        print_r($_GET);
     }
     public function auth2($code){
         $client_id="6d28866c8aa66430e361";
         $client_secret="5ea5245a8318c7f460a401afc8eaeb001c61b487";
-        $url="https://github.com/login/oauth/access_token?client_id=".$client_id."&client_secret=".$client_secret."&code=".$code;
+        $url="https://github.com/login/oauth/access_token";
 
+        $data=[
+            "client_id"=>$client_id,
+            "client_secret"=>$client_secret,
+            "code"=>$code,
+        ];
         // 1 实例化
         $ch = curl_init();
         // 2 配置参数
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_POST,1);        // 使用post 方式
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);   // 通过变量接收响应
 
         // 3 开启会话（发送请求）
