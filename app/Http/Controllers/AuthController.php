@@ -9,6 +9,7 @@ class AuthController extends Controller
     public function auth(){
         $code=$_GET["code"];
         $this->auth2($code);
+        
     }
     public function auth2($code){
         $client_id="6d28866c8aa66430e361";
@@ -30,7 +31,7 @@ class AuthController extends Controller
 
         // 3 开启会话（发送请求）
         $response = curl_exec($ch);
-        //echo $response;
+        echo $response;
         // 4 检测错误
         $errno = curl_errno($ch);       //错误码
         $errmsg = curl_error($ch);
@@ -42,6 +43,9 @@ class AuthController extends Controller
         }
         $res=curl_close($ch);
         echo "<hr>";
-        print_r($res);
+        $top=strpos($response,"=");
+        $foot=strpos($response,"&");
+        $token=substr($response,$top,$foot);
+        echo $token;
     }
 }
