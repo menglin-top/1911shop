@@ -86,7 +86,7 @@
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
-                    <a href="http://1911wml.comcto.com/auth/login">GitHub登陆</a>
+                    <a href="https://github.com/login/oauth/authorize?client_id=6d28866c8aa66430e361&redirect_uri=http://1911wml.comcto.com/auth/login">GitHub登陆</a>
                     <a href="#">李嘉迎</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
