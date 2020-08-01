@@ -48,7 +48,7 @@ Route::any("/test/pay","Pay\PaymentController@testpay");//支付页面
 Route::any("/pay","Pay\PaymentController@pay");//二维码支付
 
 //github登陆
-Route::get("/auth/login","AuthController@auth");//二维码支付
+Route::get("/auth/login","AuthController@auth");//github登陆
 
 //h5商城
 Route::any("/admin/login","Admin\IndexController@login");//登陆
