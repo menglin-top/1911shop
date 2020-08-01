@@ -52,3 +52,4 @@ Route::any("/admin/do_login","Admin\IndexController@do_login");//登陆
 Route::any("/admin/reg","Admin\IndexController@reg");//注册
 Route::any("/admin/do_reg","Admin\IndexController@do_reg");//注册
 Route::any("/admin/user","Admin\IndexController@user");//个人中心
+Route::any("/goods/product_list","Goods\IndexController@product_list");//商品页
