@@ -8,9 +8,10 @@ class AuthController extends Controller
 {
     public function auth(){
         $code=$_GET["code"];
-        $this->auth2($code);
+        $this->auth2($code);//获取access_token
         
     }
+    //获取
     public function auth2($code){
         $client_id="6d28866c8aa66430e361";
         $client_secret="5ea5245a8318c7f460a401afc8eaeb001c61b487";
@@ -44,8 +45,16 @@ class AuthController extends Controller
         $res=curl_close($ch);
         echo "<hr>";
         $top=strpos($response,"=");
+        $top=$top+1;
         $foot=strpos($response,"&");
-        $token=substr($response,$top,$foot);
+        $token=substr($response,$top,$foot-$top);
         echo $token;
+        $this->user($token);
+    }
+    //获取用户信息
+    public function user($token){
+        $url="https://api.github.com/user?access_token=".$token;
+        $res=file_get_contents($url);
+        return $res;
     }
 }

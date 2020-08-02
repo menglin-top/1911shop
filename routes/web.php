@@ -20,6 +20,8 @@ Route::get("/token3","TestController@token3");//获取微信access_token   第�
 
 Route::get("/api/test","TestController@test");//联通两个框架
 
+
+
 //注册
 Route::get("/api/reg","Api\UserController@reg");
 Route::post("/api/reg_do","Api\UserController@reg_do");
@@ -32,6 +34,8 @@ Route::get("/api/conter","Api\UserController@conter")->middleware("vertoken","in
 //redis     练习
 Route::get("/api/hash","TestController@hash");//存入redis
 Route::get("/api/hash2","TestController@hash2");//获取redis值
+
+Route::get("/str","AuthController@str");//github登陆
 
 //商品信息
 Route::get("/goods/info","Api\GoodsController@info")->middleware("vertoken","incr");
