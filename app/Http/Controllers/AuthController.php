@@ -58,7 +58,7 @@ class AuthController extends Controller
         $ch=curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token '.$token));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token '.$token,'User-Agent:http://developer.github.com/v3/#user-agent-required'));
         $response=curl_exec($ch);
         if(curl_errno($ch)>0){
             echo '错误码'.curl_errno($ch);
