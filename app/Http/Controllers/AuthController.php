@@ -54,11 +54,11 @@ class AuthController extends Controller
     //获取用户信息
     public function user($token){
       //  $url="https://api.github.com/user?access_token=".$token;
-        $url='https://api.github.com/user';
+        $url='http://api.github.com/user';
         $ch=curl_init();
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token'.$token,'User-Agent:http://developer.github.com/v3/#user-agent-required'));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token '.$token,'User-Agent:http://developer.github.com/v3/#user-agent-required'));
         $response=curl_exec($ch);
         if(curl_errno($ch)>0){
             echo '错误码'.curl_errno($ch);
