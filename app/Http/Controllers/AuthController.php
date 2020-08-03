@@ -56,9 +56,9 @@ class AuthController extends Controller
       //  $url="https://api.github.com/user?access_token=".$token;
         $url='http://api.github.com/user';
         $ch=curl_init();
-        curl_setopt($ch,CURLOPT_URL,$url);
+//        curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token '.$token .$url,'User-Agent:http://developer.github.com/v3/#user-agent-required'));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token '.$token .$url));
        // curl -H "Authorization: token OAUTH-TOKEN" https://api.github.com/user
         $response=curl_exec($ch);
         if(curl_errno($ch)>0){
