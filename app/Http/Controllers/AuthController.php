@@ -53,9 +53,9 @@ class AuthController extends Controller
     }
     //获取用户信息
     public function user($token){
-        $url="https://api.github.com/user?access_token=".$token;
+      //  $url="https://api.github.com/user?access_token=".$token;
+        $url='https://api.github.com/user';
         $ch=curl_init();
-        $url='';
         curl_setopt($ch.CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token'.$token));
