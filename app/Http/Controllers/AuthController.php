@@ -56,12 +56,12 @@ class AuthController extends Controller
       //  $url="https://api.github.com/user?access_token=".$token;
         $url='https://api.github.com/user';
         $ch=curl_init();
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: token'.$token));
         $response=curl_exec($ch);
         if(curl_errno($ch)>0){
-            echo curl_errno($ch);
+            echo '错误码'.curl_errno($ch);
             echo curl_error($ch);
             die;
         }
