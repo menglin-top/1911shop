@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Model\Token;
+use App\Model\Goods;
 
 class indexController extends Controller
 {
@@ -61,9 +62,7 @@ class indexController extends Controller
             ];
             return $response;
         }
-//        $url="http://www.api.com/index/user";
-//        $res=file_get_contents($url);
-//        echo $res;
-        return view("admin/index/user");
+        $goods=Goods::get();
+        return view("admin/index/user",compact("goods"));
     }
 }

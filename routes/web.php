@@ -35,7 +35,6 @@ Route::get("/api/conter","Api\UserController@conter")->middleware("vertoken","in
 Route::get("/api/hash","TestController@hash");//存入redis
 Route::get("/api/hash2","TestController@hash2");//获取redis值
 
-Route::get("/str","AuthController@str");//github登陆
 
 //商品信息
 Route::get("/goods/info","Api\GoodsController@info")->middleware("vertoken","incr");
@@ -61,3 +60,6 @@ Route::any("/admin/reg","Admin\IndexController@reg");//注册
 Route::any("/admin/do_reg","Admin\IndexController@do_reg");//注册
 Route::any("/admin/user","Admin\IndexController@user");//个人中心
 Route::any("/goods/product_list","Goods\IndexController@product_list");//商品页
+Route::any("/goods/cart/{goods_id}","Goods\IndexController@cart");//购物车
+Route::any("/goods/goods/{goods_id}","Goods\IndexController@goods");//商品详情
+Route::any("/goods/checkout","Goods\IndexController@checkout");//支付
