@@ -20,7 +20,7 @@
 <!-- shop single -->
 <div class="pages section">
     <div class="container">
-        <form action="{{url("/goods/cart/".$goods_info->goods_id)}}" method="post">
+        <form action="{{url("/goods/do_cart/".$goods_info->goods_id)}}" method="post">
             <div class="shop-single">
                 <img src="{{env("UPLOADS_URL")}}{{$goods_info->goods_img}}" alt="">
                 <h5>{{$goods_info->goods_name}}</h5>

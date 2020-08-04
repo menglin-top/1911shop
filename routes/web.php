@@ -61,5 +61,6 @@ Route::any("/admin/do_reg","Admin\IndexController@do_reg");//注册
 Route::any("/admin/user","Admin\IndexController@user");//个人中心
 Route::any("/goods/product_list","Goods\IndexController@product_list");//商品页
 Route::any("/goods/cart/{goods_id}","Goods\IndexController@cart");//购物车
+Route::any("/goods/do_cart/{goods_id}","Goods\IndexController@do_cart");//添加到购物车
 Route::any("/goods/goods/{goods_id}","Goods\IndexController@goods");//商品详情
-Route::any("/goods/checkout","Goods\IndexController@checkout");//支付
+Route::any("/goods/check/{goods_id}","Goods\IndexController@check");//支付

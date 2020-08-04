@@ -169,7 +169,7 @@
                                                 </div>
                                                 <div class="col s7">
                                                     <div class="cart-product">
-                                                        <img src="img/shop1.png" alt="">
+                                                        <img src="{{env('UPLOADS_URL')}}{{$goods_info->goods_img}}" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,7 +182,7 @@
                                                 </div>
                                                 <div class="col s7">
                                                     <div class="cart-product">
-                                                        <a href="">Jackets Men's</a>
+                                                        <a href="">{{$goods_info->goods_name}}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +195,7 @@
                                                 </div>
                                                 <div class="col s7">
                                                     <div class="cart-product">
-                                                        <input type="text" value="1">
+                                                        <input type="text" value="{{$goods_info->sale_num}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@
                                                 </div>
                                                 <div class="col s7">
                                                     <div class="cart-product">
-                                                        <span>$26.00</span>
+                                                        <span>${{$goods_info->shop_price}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -220,7 +220,7 @@
                                                 </div>
                                                 <div class="col s7">
                                                     <div class="cart-product">
-                                                        <span>$26.00</span>
+                                                        <span>${{$goods_info->total}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,7 +238,7 @@
                                                 </div>
                                                 <div class="col s4">
                                                     <div class="cart-product">
-                                                        <span>$26.00</span>
+                                                        <span>${{$goods_info->total}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -262,13 +262,13 @@
                                                 </div>
                                                 <div class="col s4">
                                                     <div class="cart-product">
-                                                        <span>$31.00</span>
+                                                        <span>${{$goods_info->total}}+5</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="" class="btn button-default button-fullwidth">CONTINUE</a>
+                                    <a href="{{url('pay')}}" class="btn button-default button-fullwidth">CONTINUE</a>
                                 </div>
                             </div>
                         </li>
