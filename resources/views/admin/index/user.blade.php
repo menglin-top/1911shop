@@ -142,48 +142,22 @@
             <div class="divider-bottom"></div>
         </div>
         <div class="row">
-            <div class="col s6">
-                <div class="content">
-                    <img src="/style/img/product-new1.png" alt="">
-                    <h6><a href="">Fashion Men's</a></h6>
-                    <div class="price">
-                        $20 <span>$28</span>
+            @foreach($goods as $k=>$v)
+                <div class="col s6">
+                    <div class="content">
+                        <form action="{{url("goods/goods/".$v->goods_id)}}" method="post">
+                            <input type="hidden" value="{{$v->goods_id}}">
+                            <img src="{{env('UPLOADS_URL')}}{{$v->goods_img}}" alt="">
+                            <h6><a href="">{{$v->goods_name}}</a></h6>
+                            <div class="price">
+                                ${{$v->shop_price}} <span>$28</span>
+                            </div>
+                            <button class="btn button-default" type="submit">ADD TO CART</button>
+                        </form>
                     </div>
-                    <button class="btn button-default">ADD TO CART</button>
                 </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <img src="/style/img/product-new2.png" alt="">
-                    <h6><a href="">Fashion Men's</a></h6>
-                    <div class="price">
-                        $20 <span>$28</span>
-                    </div>
-                    <button class="btn button-default">ADD TO CART</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <div class="content">
-                    <img src="/style/img/product-new3.png" alt="">
-                    <h6><a href="">Fashion Men's</a></h6>
-                    <div class="price">
-                        $20 <span>$28</span>
-                    </div>
-                    <button class="btn button-default">ADD TO CART</button>
-                </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <img src="/style/img/product-new4.png" alt="">
-                    <h6><a href="">Fashion Men's</a></h6>
-                    <div class="price">
-                        $20 <span>$28</span>
-                    </div>
-                    <button class="btn button-default">ADD TO CART</button>
-                </div>
-            </div>
+            @endforeach
+
         </div>
         <div class="pagination-product">
             <ul>
